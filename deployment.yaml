@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assignment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assignment
+  strategy: 
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: assignment
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: assignment
+        image: docker.io/hardikpruthi/assignment:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4300
