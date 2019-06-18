@@ -17,7 +17,7 @@ var mysql = require('mysql');
 
 // new comment
 // all environments
-app.set('port', process.env.PORT || 4200);
+app.set('port', process.env.PORT || 4300);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 //app.use(express.favicon());
@@ -42,7 +42,7 @@ app.use(
     
     connection(mysql,{
         
-        host: 'localhost',
+        host: 'mysql8-service',
         user: 'root',
         password : 'root',
         port : 3306, //port mysql
@@ -54,7 +54,7 @@ app.use(
 
 
 
-app.get('/', routes.index);
+app.get('/', customers.list);
 app.get('/customers', customers.list);
 app.get('/customers/add', customers.add);
 app.post('/customers/add', customers.save);
